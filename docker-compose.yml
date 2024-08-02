@@ -2,12 +2,23 @@ version: "3.8"
 services:
   mysql-db:
     image: mysql:8.0
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=root1234
     ports:
       - "3306:3306"
     volumes:
       - mysql-db-data:/var/lib/mysql
+  postgresql-db:
+    image: postgres:16
+    platform: linux/x86_64
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=root1234
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgresql-db-data:/var/lib/postgresql/data
 volumes:
   mysql-db-data:
+  postgresql-db-data:
