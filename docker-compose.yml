@@ -19,6 +19,18 @@ services:
       - '5432:5432'
     volumes:
       - postgresql-db-data:/var/lib/postgresql/data
+  pg-admin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: carrizoaagustin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: zeus
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 volumes:
   mysql-db-data:
   postgresql-db-data:
+  pgadmin-data:
